@@ -24,6 +24,14 @@ public class CerealRunner
    public static  ArrayList<Cereal> filterCarbsPerCup(int min, int max)
    {
       //Add your solution to Question 1 here.
+      ArrayList<Cereal> al = new ArrayList<>();
+      for (Cereal c : cereals){
+         double fcperc = c.getCarbs()/c.getCups();
+         if ((fcperc>= min) && (fcperc <= max)){
+            al.add(c);
+         }
+      }
+      return al;
    }
    
    /* Question 2: Write highestPercentFiber
@@ -35,9 +43,18 @@ public class CerealRunner
    public static Cereal highestPercentFiber()
    {
       //Add your solution to Question 2 here.
+      double fpercal = 0.0;
+      Cereal cer = cereals.get(0);
+      for (Cereal c : cereals){
+         if ((double)(c.getFiber()/c.getCalories()) > fpercal){
+            cer = c;
+            fpercal = c.getFiber()/c.getCalories();
+         }
+      }
+      return cer;
+      
    }
   
-   
    /* Questino 3: Write findNetCarbs
    *  This static method will take in a cereal object and returns 
    *  difference of carbs and fiber for that cereal
@@ -47,6 +64,10 @@ public class CerealRunner
    public static double findNetCarbsPerCup(Cereal c)
    {
       //Add your solution to Question 3 here.
+      double carbs = c.getCarbs();
+      double fiber = c.getFiber();
+      return (carbs-fiber);
+
    }
   
 
@@ -86,6 +107,7 @@ public class CerealRunner
 
    public static void main(String [] args)
    {
+
       String fileName= "src/data/cerealSubset.csv";
       CerealRunner cr = new CerealRunner(fileName);
       ArrayList<Cereal> results = filterCarbsPerCup(17, 18);
@@ -117,6 +139,21 @@ public class CerealRunner
       Cereal testCereal = new Cereal("Golden Crisp",100,0,11,0.88);
       System.out.println("Expected results: 11.0");
       System.out.println("Actual results:   " + findNetCarbsPerCup(testCereal));
+
+      for(Cereal c: cereals) { 
+      if(c.getName().equals("All-Bran with Extra Fiber") ||   
+      c.getName().equals("Apple Jacks") ||  
+      c.getName().equals("Cocoa Puffs")) 
+      { 
+       System.out.println("\nCereal: " + c.getName() + ", NetCarbs: "    
+                           + findNetCarbsPerCup(c)); 
+       } 
+      }
+      /*
+      Question 4 Answer: All-Bran with Extra Fiber is out of place because the net carbs 
+      is negative. This implies that there is more fiber than carbohydrates. 
+       */
+      
       
    }
 }
