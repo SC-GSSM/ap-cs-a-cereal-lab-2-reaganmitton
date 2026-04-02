@@ -150,7 +150,8 @@ public class CerealRunner
        } 
       }
       /*
-      Question 4 Answer: All-Bran with Extra Fiber is out of place because the net carbs 
+      Question 4 Answer
+      All-Bran with Extra Fiber is out of place because the net carbs 
       is negative. This implies that there is more fiber than carbohydrates. 
        */
       
